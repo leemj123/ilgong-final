@@ -1,13 +1,9 @@
-// 전체선택 기능
-function selectAllRegions() {
-    alert('전체 지역이 선택되었습니다.');
-}
+const API_ENDPOINT = 'http://localhost:40011';
 
 // 폼 데이터 수집 및 백엔드 전송용 파라미터 생성
 function collectFormData() {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:7',message:'collectFormData called',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
+
 
     const formData = {
         // 기본 정보
@@ -49,7 +45,6 @@ function collectFormData() {
     const maxPriceText = maxPriceSelect?.querySelector('.select-text')?.textContent || 'not found';
     const minPriceSelected = minPriceSelect?.querySelector('.select-dropdown li.selected');
     const maxPriceSelected = maxPriceSelect?.querySelector('.select-dropdown li.selected');
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:44',message:'Price select state',data:{minPriceText,maxPriceText,minPriceSelected:!!minPriceSelected,maxPriceSelected:!!maxPriceSelected,minPriceValue:minPriceSelected?.dataset.value,maxPriceValue:maxPriceSelected?.dataset.value},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     
     if (minPriceSelect) {
@@ -93,7 +88,6 @@ function collectFormData() {
     // 방 타입 수집
     const roomTypeCheckboxes = document.querySelectorAll('input[name="roomType"]:checked');
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:78',message:'Room types collection',data:{checkedCount:roomTypeCheckboxes.length,values:Array.from(roomTypeCheckboxes).map(cb=>cb.value)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
     roomTypeCheckboxes.forEach(cb => {
         formData.roomTypes.push(cb.value);
@@ -102,7 +96,6 @@ function collectFormData() {
     // 건물 구조 타입 수집
     const structureTypeCheckboxes = document.querySelectorAll('input[name="structureType"]:checked');
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:87',message:'Structure types collection',data:{checkedCount:structureTypeCheckboxes.length,values:Array.from(structureTypeCheckboxes).map(cb=>cb.value)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
     structureTypeCheckboxes.forEach(cb => {
         formData.structureTypes.push(cb.value);
@@ -111,7 +104,6 @@ function collectFormData() {
     // 건물 축년 수 수집 (최소 연도만)
     const activeAgePoints = document.querySelectorAll('.age-point.active:not([data-year="all"])');
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:95',message:'Building age points',data:{activeCount:activeAgePoints.length,years:Array.from(activeAgePoints).map(p=>p.dataset.year)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
     // #endregion
     const buildingAgeYears = [];
     activeAgePoints.forEach(point => {
@@ -127,7 +119,6 @@ function collectFormData() {
     // 희망 지역 수집
     const locationTypeCheckboxes = document.querySelectorAll('input[name="locationType"]:checked');
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:110',message:'Location types collection',data:{checkedCount:locationTypeCheckboxes.length,values:Array.from(locationTypeCheckboxes).map(cb=>cb.value)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
     locationTypeCheckboxes.forEach(cb => {
         formData.locationTypes.push(cb.value);
@@ -136,7 +127,6 @@ function collectFormData() {
     // 많이 찾는 옵션 수집
     const popularOptionsCheckboxes = document.querySelectorAll('input[name="popularOptions"]:checked');
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:118',message:'Popular options collection',data:{checkedCount:popularOptionsCheckboxes.length,values:Array.from(popularOptionsCheckboxes).map(cb=>cb.value)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
     popularOptionsCheckboxes.forEach(cb => {
         formData.popularOptions.push(cb.value);
@@ -145,7 +135,6 @@ function collectFormData() {
     // 건물 옵션 수집
     const buildingOptionsCheckboxes = document.querySelectorAll('input[name="buildingOptions"]:checked');
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:126',message:'Building options collection',data:{checkedCount:buildingOptionsCheckboxes.length,values:Array.from(buildingOptionsCheckboxes).map(cb=>cb.value)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
     // #endregion
     buildingOptionsCheckboxes.forEach(cb => {
         formData.buildingOptions.push(cb.value);
@@ -156,7 +145,6 @@ function collectFormData() {
     // #region agent log
     const walkingTimeText = walkingTimeSelect?.querySelector('.select-text')?.textContent || 'not found';
     const walkingTimeSelected = walkingTimeSelect?.querySelector('.select-dropdown li.selected');
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:135',message:'Walking time select state',data:{walkingTimeText,walkingTimeSelected:!!walkingTimeSelected,walkingTimeValue:walkingTimeSelected?.dataset.value},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     if (walkingTimeSelect) {
         const walkingTimeLi = walkingTimeSelect.querySelector('.select-dropdown li.selected');
@@ -177,8 +165,7 @@ function collectFormData() {
         }
     }
 
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/fe271648-e152-4df7-81d5-741f73daf5dc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'houber.js:152',message:'collectFormData result',data:{formData},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+
     // #endregion
 
     return formData;
@@ -194,7 +181,7 @@ function prepareBackendParams(formData) {
     }
     
     if (formData.visaType && formData.visaType !== '선택 필수') {
-        params.visaType = formData.visaType;
+        params.visaType = parseInt(formData.visaType);
     }
     
     // 가격 범위
@@ -223,7 +210,7 @@ function prepareBackendParams(formData) {
     
     // 희망 지역
     if (formData.locationTypes.length > 0) {
-        params.locationTypes = formData.locationTypes;
+        params.locationTypes = formData.locationTypes.map(loc => parseInt(loc));
     }
     
     // 많이 찾는 옵션
@@ -244,21 +231,42 @@ function prepareBackendParams(formData) {
     return params;
 }
 
-// 백엔드로 데이터 전송 시뮬레이션
+
+
+// 백엔드로 데이터 전송
 async function sendToBackend(params) {
-    // 실제 백엔드 엔드포인트 (준비되면 사용)
-    const API_ENDPOINT = '/api/housing/search';
+    const emailInput = document.getElementById('email');
+    const email = emailInput ? emailInput.value.trim() : '';
     
-    console.log('=== 백엔드 전송 시뮬레이션 ===');
-    console.log('엔드포인트:', API_ENDPOINT);
-    console.log('전송 파라미터:', JSON.stringify(params, null, 2));
-    console.log('전송 방법: POST');
-    console.log('Content-Type: application/json');
+    // 모달 먼저 표시
+    const modal = document.getElementById('searchStatusModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
     
-    // 실제 전송 코드 (주석 처리 - 백엔드 준비되면 활성화)
-    /*
+    // 60까지 진행시키는 시뮬레이션
+    const flowSequence = [5, 10, 20, 30, 60];
+    
+    // 진행 애니메이션 실행
+    for (let i = 0; i < flowSequence.length; i++) {
+        const flow = flowSequence[i];
+        updateStatusModal({
+            status: 'processing',
+            flow: flow,
+            progress: flow,
+            message: getStatusMessageByFlow(flow),
+            details: '',
+            email: email
+        });
+        if (i < flowSequence.length - 1) {
+            await new Promise(resolve => setTimeout(resolve, 800)); // 각 단계마다 0.8초
+        }
+    }
+    
+    // 백엔드 요청 전송 (60까지 진행한 후)
     try {
-        const response = await fetch(API_ENDPOINT, {
+        const response = await fetch(API_ENDPOINT + '/agent/houber', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -267,141 +275,89 @@ async function sendToBackend(params) {
         });
         
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            // 에러 발생 시 모달 닫기
+            hideStatusModal();
+            
+            // 제출 버튼 다시 활성화
+            const submitBtn = document.querySelector('.submit-btn');
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '검색 요청하기';
+            }
+            
+            if (response.status === 400) {
+                alert('메일 주소로 발송이 실패했습니다. 주소를 다시 확인해주세요');
+            } else if (response.status === 404) {
+                alert('현재 조건에 맞는 건물을 찾을 수 없어요.');
+            }
+             else {
+                alert('요청 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+            return;
         }
         
-        const data = await response.json();
-        return data;
+        // 성공 시 응답에서 건물 개수 추출 (숫자만 바디로 넘어옴)
+        const responseText = await response.text();
+        const buildingCount = parseInt(responseText) || 0;
+        
+        // 성공 시 나머지 진행 (70, 80, 100)
+        const successFlowSequence = [70, 80, 100];
+        for (let i = 0; i < successFlowSequence.length; i++) {
+            await new Promise(resolve => setTimeout(resolve, 1000)); // 1초 간격
+            const flow = successFlowSequence[i];
+            updateStatusModal({
+                status: flow === 100 ? 'completed' : 'processing',
+                flow: flow,
+                progress: flow,
+                message: getStatusMessageByFlow(flow, buildingCount),
+                details: flow === 80 ? getStatusDetailsByFlow(flow, email) : '',
+                email: email
+            });
+        }
+        
     } catch (error) {
+        // 네트워크 오류 등
+        hideStatusModal();
         console.error('백엔드 전송 오류:', error);
-        throw error;
-    }
-    */
-    
-    // 시뮬레이션: 성공 응답 (requestId 반환)
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const mockResponse = {
-                success: true,
-                message: '검색 요청이 성공적으로 전송되었습니다.',
-                requestId: `req_${Date.now()}`,
-                timestamp: new Date().toISOString()
-            };
-            console.log('=== 백엔드 응답 (시뮬레이션) ===');
-            console.log(JSON.stringify(mockResponse, null, 2));
-            resolve(mockResponse);
-        }, 500); // 0.5초 지연으로 실제 전송처럼 보이게
-    });
-}
-
-// ========================================
-// 검색 상태 확인 (폴링)
-// ========================================
-let pollingInterval = null;
-let pollingRequestId = null;
-let currentProgress = 0; // 현재 진행률 추적
-
-// 검색 상태 확인 API 호출
-async function checkSearchStatus(requestId) {
-    const STATUS_ENDPOINT = `/api/housing/search/status/${requestId}`;
-    
-    console.log('=== 상태 확인 요청 ===');
-    console.log('엔드포인트:', STATUS_ENDPOINT);
-    console.log('Request ID:', requestId);
-    
-    // 실제 API 호출 코드 (백엔드 준비되면 활성화)
-    /*
-    try {
-        const response = await fetch(STATUS_ENDPOINT, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
         
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        // 제출 버튼 다시 활성화
+        const submitBtn = document.querySelector('.submit-btn');
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = '검색 요청하기';
         }
         
-        const data = await response.json();
-        // 백엔드 응답 형식 예상: { flow: 10, email: "user@example.com", ... }
-        return {
-            requestId: requestId,
-            flow: data.flow, // 백엔드에서 받은 flow 넘버
-            email: data.email, // 이메일 (80일 때 표시용)
-            status: data.flow === 100 ? 'completed' : (data.flow === -1 ? 'failed' : 'processing'),
-            progress: data.flow === -1 ? 0 : Math.max(0, Math.min(100, data.flow)),
-            message: getStatusMessageByFlow(data.flow),
-            details: getStatusDetailsByFlow(data.flow, data.email),
-            timestamp: new Date().toISOString()
-        };
-    } catch (error) {
-        console.error('상태 확인 오류:', error);
-        throw error;
+        alert('요청 전송 중 오류가 발생했습니다. 네트워크 연결을 확인해주세요.');
     }
-    */
-    
-    // 시뮬레이션: 상태 응답 (테스트용 - flow 넘버 시뮬레이션)
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            // 테스트용: flow 넘버를 순차적으로 증가
-            const flowSequence = [5, 10, 20, 30, 60, 41, 70, 80, 100];
-            let currentIndex = -1;
-            
-            // 현재 진행 중인 flow 찾기
-            if (currentProgress === 0) {
-                currentIndex = -1; // 시작
-            } else {
-                currentIndex = flowSequence.indexOf(currentProgress);
-            }
-            
-            // 다음 flow로 진행
-            const nextIndex = currentIndex < flowSequence.length - 1 ? currentIndex + 1 : flowSequence.length - 1;
-            currentProgress = flowSequence[nextIndex];
-            
-            // 완료 조건: 100 도달
-            const isCompleted = currentProgress === 100;
-            const isError = currentProgress === -1;
-            
-            // 이메일 가져오기 (80일 때 표시용)
-            const emailInput = document.getElementById('email');
-            const email = emailInput ? emailInput.value.trim() : '';
-            
-            const mockResponse = {
-                requestId: requestId,
-                flow: currentProgress,
-                email: email,
-                status: isCompleted ? 'completed' : (isError ? 'failed' : 'processing'),
-                progress: isError ? 0 : Math.max(0, Math.min(100, currentProgress)),
-                message: getStatusMessageByFlow(currentProgress),
-                details: getStatusDetailsByFlow(currentProgress, email),
-                timestamp: new Date().toISOString()
-            };
-            
-            console.log('=== 상태 확인 응답 (시뮬레이션) ===');
-            console.log(JSON.stringify(mockResponse, null, 2));
-            resolve(mockResponse);
-        }, 300); // 0.3초 지연
-    });
 }
+
+// ========================================
+// 검색 상태 확인 (폴링) - 더 이상 사용하지 않음
+// ========================================
 
 // Flow 넘버에 따른 메시지 반환
-function getStatusMessageByFlow(flow) {
+function getStatusMessageByFlow(flow, count) {
     const flowMessages = {
         'start': '검색 요청을 발송했어요! 조건에 대한 10개의 건물을 보내드릴게요',
         5: '프로세스 신청 대기 중',
         10: '프로세스 시작됌',
         20: '요청사항 분석 중 ...',
         30: '데이터베이스 추합 중...',
-        41: '정확도 미달로 재검색중',
-        60: '결과 값 정확도 분석중',
+        60: '실제 공실 갱신 중...',
         70: '예쁘게 포장 중',
-        80: '산출 완료 메일로 전송을 준비합니다',
-        100: '발송완료 메일을 확인해주세요',
+        80: '건물 {}개를 찾았어요',
+        100: '건물 {}개를 찾았어요,<br> 도착까지 약간의 시간이 소요될 수 있습니다',
         '-1': '에러 발생 요청을 강제 종료합니다'
     };
     
-    return flowMessages[flow] || flowMessages[flow.toString()] || '처리 중...';
+    let message = flowMessages[flow] || flowMessages[flow.toString()] || '처리 중...';
+    
+    // 숫자가 필요한 메시지(80, 100)에 count 값 치환
+    if ((flow === 80 || flow === 100) && count !== undefined && count !== null) {
+        message = message.replace('{}', count);
+    }
+    
+    return message;
 }
 
 // Flow 넘버에 따른 상세 정보 반환
@@ -412,68 +368,7 @@ function getStatusDetailsByFlow(flow, email) {
     return '';
 }
 
-// 폴링 시작
-function startPolling(requestId) {
-    pollingRequestId = requestId;
-    currentProgress = 0; // flow 초기화
-    
-    // 시작 메시지 표시
-    const emailInput = document.getElementById('email');
-    const email = emailInput ? emailInput.value.trim() : '';
-    updateStatusModal({
-        status: 'processing',
-        flow: 'start',
-        progress: 0,
-        message: getStatusMessageByFlow('start'),
-        details: '',
-        email: email
-    });
-    
-    // 2초 후 첫 번째 상태 확인 시작
-    setTimeout(() => {
-        checkStatusOnce();
-        
-        // 2초마다 상태 확인
-        pollingInterval = setInterval(() => {
-            checkStatusOnce();
-        }, 2000);
-    }, 2000);
-}
-
-// 폴링 중지
-function stopPolling() {
-    if (pollingInterval) {
-        clearInterval(pollingInterval);
-        pollingInterval = null;
-    }
-    pollingRequestId = null;
-    currentProgress = 0; // 진행률 초기화
-}
-
-// 상태 확인 한 번 실행
-async function checkStatusOnce() {
-    if (!pollingRequestId) return;
-    
-    try {
-        const statusData = await checkSearchStatus(pollingRequestId);
-        updateStatusModal(statusData);
-        
-        // 완료 또는 실패 시 폴링 중지
-        if (statusData.status === 'completed' || statusData.status === 'failed') {
-            stopPolling();
-        }
-    } catch (error) {
-        console.error('상태 확인 오류:', error);
-        updateStatusModal({
-            status: 'error',
-            flow: -1,
-            message: getStatusMessageByFlow(-1),
-            progress: 0,
-            details: '상태 확인 중 오류가 발생했습니다.'
-        });
-        stopPolling();
-    }
-}
+// 폴링 관련 함수들 - 더 이상 사용하지 않음
 
 // ========================================
 // 확인 모달 제어
@@ -499,24 +394,14 @@ function hideConfirmModal() {
 // ========================================
 // 모달 제어
 // ========================================
-function showStatusModal(requestId) {
-    const modal = document.getElementById('searchStatusModal');
-    if (!modal) return;
-    
-    // 모달 표시
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // 스크롤 방지
-    
-    // 폴링 시작 (시작 메시지는 startPolling에서 처리)
-    startPolling(requestId);
+function showStatusModal() {
+    // 이 함수는 더 이상 사용하지 않음 (sendToBackend에서 직접 처리)
+    // 호환성을 위해 유지하지만 실제로는 아무 동작도 하지 않음
 }
 
 function hideStatusModal() {
     const modal = document.getElementById('searchStatusModal');
     if (!modal) return;
-    
-    // 폴링 중지
-    stopPolling();
     
     // 모달 숨김
     modal.classList.remove('active');
@@ -535,7 +420,13 @@ function updateStatusModal(statusData) {
     if (!statusMessage || !statusDetails || !progressFill || !progressText) return;
     
     // 메시지 업데이트 (flow에 따른 메시지)
-    statusMessage.textContent = statusData.message || '처리 중...';
+    const message = statusData.message || '처리 중...';
+    // HTML 태그가 포함된 경우 innerHTML 사용, 아니면 textContent 사용
+    if (message.includes('<br>') || message.includes('<br/>') || message.includes('<br />')) {
+        statusMessage.innerHTML = message;
+    } else {
+        statusMessage.textContent = message;
+    }
     
     // 상세 정보 업데이트
     if (statusData.details) {
@@ -552,7 +443,12 @@ function updateStatusModal(statusData) {
     
     // 완료 또는 실패 시
     if (statusData.status === 'completed' || statusData.flow === 100) {
-        statusMessage.textContent = statusData.message || getStatusMessageByFlow(100);
+        const completedMessage = statusData.message || getStatusMessageByFlow(100);
+        if (completedMessage.includes('<br>') || completedMessage.includes('<br/>') || completedMessage.includes('<br />')) {
+            statusMessage.innerHTML = completedMessage;
+        } else {
+            statusMessage.textContent = completedMessage;
+        }
         if (statusData.details) {
             statusDetails.textContent = statusData.details;
         } else {
@@ -620,32 +516,9 @@ async function processSearchRequest() {
     // 확인 모달 닫기
     hideConfirmModal();
     
-    try {
-        // 백엔드로 데이터 전송 시뮬레이션
-        const response = await sendToBackend(backendParams);
+    // 백엔드로 데이터 전송
+    await sendToBackend(backendParams);
         
-        // 데이터를 localStorage에 저장 (백업용)
-        localStorage.setItem('housingFormData', JSON.stringify(formData));
-        localStorage.setItem('lastSearchRequest', JSON.stringify({
-            params: backendParams,
-            timestamp: new Date().toISOString(),
-            requestId: response.requestId
-        }));
-        
-        // 상태 모달 표시 및 폴링 시작
-        showStatusModal(response.requestId);
-        
-    } catch (error) {
-        console.error('전송 오류:', error);
-        alert('검색 요청 전송 중 오류가 발생했습니다. 다시 시도해주세요.');
-        
-        // 제출 버튼 활성화
-        const submitBtn = document.querySelector('.submit-btn');
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = '검색 요청하기';
-        }
-    }
 }
 
 // 페이지 로드 시 초기화
@@ -850,96 +723,57 @@ function initializeBuildingAgeFilter() {
         return;
     }
     
-    // 연도 순서 (인덱스 순서)
-    const yearOrder = ['all', '1990', '2000', '2010', '2020'];
-    let buildingAgeYears = [];
-    
     // 초기 상태 설정 - 전체 버튼 활성화
     const allPoint = document.querySelector('.age-point[data-year="all"]');
     if (allPoint) {
         allPoint.classList.add('active');
     }
-    updateBuildingAgeSlider();
+    
+    // 초기 업데이트 (약간의 지연을 두어 레이아웃이 완전히 로드된 후 실행)
+    setTimeout(() => {
+        updateBuildingAgeSlider();
+    }, 100);
+    
+    // 리사이즈 시 선 위치 업데이트
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateBuildingAgeSlider();
+        }, 100);
+    });
     
     agePoints.forEach(point => {
         point.addEventListener('click', (e) => {
             e.stopPropagation();
             const year = point.dataset.year;
-            const index = parseInt(point.dataset.index);
+            const clickedIndex = parseInt(point.dataset.index);
             
             if (year === 'all') {
                 // 전체를 클릭하면 모든 연도 해제
-                buildingAgeYears = [];
                 agePoints.forEach(p => {
-                    if (p.dataset.year !== 'all') {
-                        p.classList.remove('active');
-                    }
+                    p.classList.remove('active');
                 });
-                // 전체 버튼 활성화
+                // 전체 버튼만 활성화
                 point.classList.add('active');
             } else {
-                const yearNum = parseInt(year);
-                const isActive = point.classList.contains('active');
-                
-                if (isActive) {
-                    // 이미 선택된 연도를 다시 클릭하면 해당 연도와 그 이상의 모든 연도 해제
-                    const yearsToRemove = [];
-                    for (let i = index; i < yearOrder.length; i++) {
-                        if (yearOrder[i] !== 'all') {
-                            const y = parseInt(yearOrder[i]);
-                            yearsToRemove.push(y);
-                            const correspondingPoint = document.querySelector(`.age-point[data-year="${yearOrder[i]}"]`);
-                            if (correspondingPoint) {
-                                correspondingPoint.classList.remove('active');
-                            }
-                        }
-                    }
-                    buildingAgeYears = buildingAgeYears.filter(y => !yearsToRemove.includes(y));
-                } else {
-                    // 선택되지 않은 연도를 클릭할 때
-                    if (buildingAgeYears.length > 0) {
-                        // 이미 선택된 연도가 있으면, 가장 작은 연도부터 클릭한 연도까지 모두 선택
-                        const minSelectedYear = Math.min(...buildingAgeYears);
-                        const minSelectedIndex = yearOrder.indexOf(minSelectedYear.toString());
-                        
-                        const selectedYears = [];
-                        for (let i = minSelectedIndex; i <= index; i++) {
-                            if (yearOrder[i] !== 'all') {
-                                const y = parseInt(yearOrder[i]);
-                                selectedYears.push(y);
-                                const correspondingPoint = document.querySelector(`.age-point[data-year="${yearOrder[i]}"]`);
-                                if (correspondingPoint) {
-                                    correspondingPoint.classList.add('active');
-                                }
-                            }
-                        }
-                        buildingAgeYears = [...new Set([...buildingAgeYears, ...selectedYears])].sort((a, b) => a - b);
-                    } else {
-                        // 선택된 연도가 없으면, 클릭한 연도 이상의 모든 연도 선택
-                        point.classList.add('active');
-                        
-                        const selectedYears = [];
-                        for (let i = index; i < yearOrder.length; i++) {
-                            if (yearOrder[i] !== 'all') {
-                                const y = parseInt(yearOrder[i]);
-                                selectedYears.push(y);
-                                const correspondingPoint = document.querySelector(`.age-point[data-year="${yearOrder[i]}"]`);
-                                if (correspondingPoint) {
-                                    correspondingPoint.classList.add('active');
-                                }
-                            }
-                        }
-                        buildingAgeYears = [...new Set([...buildingAgeYears, ...selectedYears])].sort((a, b) => a - b);
-                    }
+                // 전체 버튼 해제
+                const allPoint = document.querySelector('.age-point[data-year="all"]');
+                if (allPoint) {
+                    allPoint.classList.remove('active');
                 }
-            }
-            
-            // 전체 버튼 상태 업데이트
-            const allPoint = document.querySelector('.age-point[data-year="all"]');
-            if (buildingAgeYears.length === 0) {
-                if (allPoint) allPoint.classList.add('active');
-            } else {
-                if (allPoint) allPoint.classList.remove('active');
+                
+                // 클릭한 버튼의 좌측은 모두 off, 우측(자신 포함)은 모두 on
+                agePoints.forEach(p => {
+                    const pIndex = parseInt(p.dataset.index);
+                    if (pIndex < clickedIndex) {
+                        // 좌측: 모두 off
+                        p.classList.remove('active');
+                    } else if (pIndex >= clickedIndex && p.dataset.year !== 'all') {
+                        // 우측(자신 포함): 모두 on (전체 버튼 제외)
+                        p.classList.add('active');
+                    }
+                });
             }
             
             updateBuildingAgeSlider();
@@ -949,31 +783,49 @@ function initializeBuildingAgeFilter() {
     function updateBuildingAgeSlider() {
         if (!ageSliderLine) return;
         
-        if (buildingAgeYears.length === 0) {
+        // 활성화된 버튼들 중에서 'all' 제외한 연도 버튼들 찾기
+        const activeYearPoints = Array.from(agePoints).filter(p => 
+            p.classList.contains('active') && p.dataset.year !== 'all'
+        );
+        
+        if (activeYearPoints.length === 0) {
+            // 활성화된 연도 버튼이 없으면 선 숨김
             ageSliderLine.style.width = '0%';
             ageSliderLine.style.left = '0%';
             return;
         }
         
-        const yearOrder = ['1990', '2000', '2010', '2020'];
-        const minYear = Math.min(...buildingAgeYears).toString();
-        const maxYear = Math.max(...buildingAgeYears).toString();
+        // 트랙의 실제 위치와 너비 가져오기
+        const track = ageSliderLine.parentElement;
+        const trackRect = track.getBoundingClientRect();
+        const trackWidth = trackRect.width;
         
-        const minIndex = yearOrder.indexOf(minYear);
-        const maxIndex = yearOrder.indexOf(maxYear);
+        // 첫 번째와 마지막 활성화된 버튼 찾기
+        const sortedActivePoints = activeYearPoints.sort((a, b) => {
+            return parseInt(a.dataset.index) - parseInt(b.dataset.index);
+        });
         
-        if (minIndex >= 0 && maxIndex >= 0) {
-            const totalPoints = yearOrder.length;
-            const leftPercent = (minIndex / (totalPoints - 1)) * 100;
-            const widthPercent = ((maxIndex - minIndex) / (totalPoints - 1)) * 100;
-            
-            ageSliderLine.style.left = `${leftPercent}%`;
-            ageSliderLine.style.width = `${widthPercent}%`;
-        } else {
-            // 인덱스를 찾을 수 없는 경우 기본값 설정
-            ageSliderLine.style.width = '0%';
-            ageSliderLine.style.left = '0%';
-        }
+        const firstButton = sortedActivePoints[0];
+        const lastButton = sortedActivePoints[sortedActivePoints.length - 1];
+        
+        // 각 버튼의 중심점 위치 계산
+        const firstButtonRect = firstButton.getBoundingClientRect();
+        const lastButtonRect = lastButton.getBoundingClientRect();
+        
+        const firstButtonCenter = firstButtonRect.left + firstButtonRect.width / 2;
+        const lastButtonCenter = lastButtonRect.left + lastButtonRect.width / 2;
+        
+        // 트랙 기준으로 상대 위치 계산
+        const trackLeft = trackRect.left;
+        const lineStart = firstButtonCenter - trackLeft;
+        const lineEnd = lastButtonCenter - trackLeft;
+        
+        // 퍼센트로 변환
+        const leftPercent = (lineStart / trackWidth) * 100;
+        const widthPercent = ((lineEnd - lineStart) / trackWidth) * 100;
+        
+        ageSliderLine.style.left = `${leftPercent}%`;
+        ageSliderLine.style.width = `${widthPercent}%`;
     }
 }
 

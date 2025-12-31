@@ -260,10 +260,9 @@ input[type="checkbox"] {
 
 /* 개인정보 수집 이용 동의 섹션 */
 .privacy-agreement-section {
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 30px;
-    padding-top: 30px;
-    border-top: 1px solid #DADFEB;
+    padding-top: 20px;
 }
 
 .privacy-header {
@@ -483,13 +482,10 @@ input:valid:not(:placeholder-shown) {
 }
 
 .toggle-all-btn:hover {
-    background-color: #f5f5f5;
+    background-color: #F2F2F2;
+    border-color: #F2F2F2;
 }
 
-.toggle-all-btn.active {
-    background-color: #3D8BFF;
-    font-weight: bold;
-}
 
 /* Checkbox Grid & List */
 .checkbox-grid {
@@ -603,11 +599,14 @@ input:valid:not(:placeholder-shown) {
     color: #000000;
     font-weight: 500;
     white-space: nowrap;
+    align-self: center;
+    margin-bottom: 0;
+    font-weight: bold;
 }
 
 .walking-time-selector .custom-select {
     flex: 0 0 auto;
-    min-width: 120px;
+    min-width: 104px;
 }
 
 .walking-time-unit {
@@ -615,6 +614,7 @@ input:valid:not(:placeholder-shown) {
     color: #000000;
     font-weight: 500;
     white-space: nowrap;
+    font-weight: bold;
 }
 
 /* Custom Select Dropdown */
@@ -632,20 +632,14 @@ input:valid:not(:placeholder-shown) {
     color: #000000;
     background-color: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s;
     white-space: nowrap;
 }
 
 .select-button:hover {
-    background-color: #ffffff;
-    border-color: #999;
-}
-
-.select-button.active {
-    border-color: #3D8BFF;
-    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+    background-color: #F2F2F2;
 }
 
 .select-text {
@@ -677,6 +671,13 @@ input:valid:not(:placeholder-shown) {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     display: none;
+    /* 스크롤바 숨기기 (스크롤 기능은 유지) */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.select-dropdown::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .select-dropdown.active {
@@ -733,7 +734,7 @@ input:valid:not(:placeholder-shown) {
     position: absolute;
     top: 0;
     left: 0;
-    height: 2px;
+    height: 4px;
     background-color: #3D8BFF;
     transition: width 0.3s, left 0.3s;
     z-index: 1;
@@ -749,10 +750,12 @@ input:valid:not(:placeholder-shown) {
 
 .age-point {
     position: relative;
-    width: 24px;
-    height: 24px;
-    border: 2px solid #666;
+    width: 18px;
+    height: 18px;
+    outline-offset: -1px;
+    outline: 2px solid #666;
     border-radius: 50%;
+    border: none;
     background-color: #ffffff;
     cursor: pointer;
     transition: all 0.3s;
@@ -764,23 +767,23 @@ input:valid:not(:placeholder-shown) {
 }
 
 .age-point:hover {
-    border-color: #3D8BFF;
+    outline-color: #3D8BFF;
     transform: scale(1.1);
 }
 
 .age-point.active {
     background-color: #3D8BFF;
-    border-color: #3D8BFF;
-    width: 24px;
-    height: 24px;
+    outline-color: #3D8BFF;
+    width: 18px;
+    height: 18px;
 }
 
 .age-point-label {
     position: absolute;
-    top: -30px;
+    top: 30px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 12px;
+    font-size: 15px;
     color: #000000;
     white-space: nowrap;
     font-weight: 400;
